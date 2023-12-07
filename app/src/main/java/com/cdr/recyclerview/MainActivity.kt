@@ -1,5 +1,6 @@
 package com.cdr.recyclerview
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -10,6 +11,7 @@ import com.cdr.recyclerview.databinding.ActivityMainBinding
 import com.cdr.recyclerview.model.Person
 import com.cdr.recyclerview.model.PersonListener
 import com.cdr.recyclerview.model.PersonService
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +41,31 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerView.layoutManager = manager // Назначение LayoutManager для RecyclerView
         binding.recyclerView.adapter = adapter // Назначение адаптера для RecyclerView
+        binding.addUserButton.setOnClickListener{
+            val name = binding.editTextText.text.toString()
+            val nePerson = Person(
+                id = Random.nextLong(11, 100),
+                name = name,
+                isLiked = false
+            )
+            personService.addPerson(nePerson)
+        }
+        binding.nextScreen.setOnClickListener{
+            val processed = personService.getLikedPerson()
+            for (i in 0 until processed.size) {
+                val buff = processed[i]
+                if (i%2 == 0){
+                    Storage.redTeam.add(buff)
+                }
+                else{
+                    Storage.greenTeam.add(buff)
+                }
+
+                // ...
+            }
+            val intent = Intent(this, TargetActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private val listener: PersonListener = {adapter.data = it}

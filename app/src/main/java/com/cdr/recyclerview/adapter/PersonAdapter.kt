@@ -77,15 +77,11 @@ class PersonAdapter(private val personActionListener: PersonActionListener) :
                 if (person.isLiked) R.color.red else R.color.grey // Цвет "сердца", если пользователь был лайкнут
 
             nameTextView.text = person.name // Отрисовка имени пользователя
-            companyTextView.text = person.companyName // Отрисовка компании пользователя
             likedImageView.setColorFilter( // Отрисовка цвета "сердца"
                 ContextCompat.getColor(context, color),
                 android.graphics.PorterDuff.Mode.SRC_IN
             )
-            Glide.with(context).load(person.photo)
-                .circleCrop() // Отрисовка фотографии пользователя с помощью библиотеки Glide
-                .error(R.drawable.ic_person)
-                .placeholder(R.drawable.ic_person).into(imageView)
+
         }
     }
 

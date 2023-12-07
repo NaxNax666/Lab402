@@ -5,4 +5,5 @@ import com.cdr.recyclerview.model.PersonService
 
 class App : Application() {
     val personService = PersonService()
+    val personService2 = PersonService()
 }

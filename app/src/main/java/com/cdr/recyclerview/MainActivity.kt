@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: PersonAdapter // Объект Adapter
     private val personService: PersonService // Объект PersonService
-        get() = (applicationContext as App).personService
+        get() = (applicationContext as App).personServiceInit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
             personService.addPerson(nePerson)
         }
         binding.nextScreen.setOnClickListener{
+
             val processed = personService.getLikedPerson()
             for (i in 0 until processed.size) {
                 val buff = processed[i]

@@ -12,7 +12,7 @@ object Storage {
      *
      * Откуда фрагменты смогут подписыватсья на обновление значения этой картинки. Например.
      */
-    var bitmap: Bitmap? = null
+
     var redTeam  = mutableListOf<Person>()
     var greenTeam  = mutableListOf<Person>()
 }
